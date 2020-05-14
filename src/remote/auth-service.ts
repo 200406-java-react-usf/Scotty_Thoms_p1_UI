@@ -9,3 +9,8 @@ export async function register(username: string, password: string, firstName: st
     let response = await reimbursmentClient.post('/users', {username, password, firstName, lastName, email});
     return await response.data;
 } 
+
+export async function getAllUsers() {
+    let response = await reimbursmentClient.get('/users');
+    return await response.data;
+}
