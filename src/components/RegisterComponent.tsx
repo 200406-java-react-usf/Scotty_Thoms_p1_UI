@@ -6,7 +6,7 @@ import {
     FormControl, 
     Button} from "@material-ui/core";
 import React, { useState } from "react";
-import { register } from '../remote/auth-service';
+import { register } from '../remote/user-service';
 import { User } from "../models/user";
 
 interface IRegisterProps {
@@ -27,7 +27,7 @@ const useStyles = makeStyles({
         width: "50%"
     }
 });
-
+ 
 function RegisterComponent(props: IRegisterProps) {
 
     const classes = useStyles();

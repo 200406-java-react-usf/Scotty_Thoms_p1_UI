@@ -7,8 +7,9 @@ import {
     Button, 
     makeStyles} from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { authenticate, getAllUsers } from '../remote/auth-service';
-import { User } from '../models/user';
+import { authenticate } from '../remote/auth-service';
+import { getAllUsers } from '../remote/user-service';
+import { User } from '../models/user'; 
 import { Redirect } from 'react-router-dom';
 
 interface ILoginProps {
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
     }
 });
 
-function LoginComponent(props: ILoginProps) {
+function LoginComponent(props: ILoginProps) { 
 
     const classes = useStyles();
 
