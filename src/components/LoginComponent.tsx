@@ -7,7 +7,7 @@ import {
     Button, 
     makeStyles} from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { authenticate } from '../remote/auth-service';
+import { authenticate, getAllUsers } from '../remote/auth-service';
 import { User } from '../models/user';
 import { Redirect } from 'react-router-dom';
 
@@ -50,7 +50,11 @@ function LoginComponent(props: ILoginProps) {
         let authUser = await authenticate(username, password);
         props.setAuthUser(authUser);
         // console.log(authUser);
-        
+    }
+
+    let getUsers = async () => {
+        let allUsers = await getAllUsers();
+        console.log(allUsers);
     }
 
     return (
@@ -82,6 +86,7 @@ function LoginComponent(props: ILoginProps) {
                         </FormControl>
                         <br/><br/>
                         <Button onClick={login} variant="contained" color="primary" size="medium">Login</Button>
+                        <Button onClick={getUsers} variant="contained" color="primary" size="medium">Get ALl Users Test</Button>
                         <br/><br/>
                         {
                             errorMessage 
