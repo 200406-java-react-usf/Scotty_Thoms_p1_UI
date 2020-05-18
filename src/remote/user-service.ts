@@ -1,4 +1,4 @@
-import { reimbursmentClient } from './reimbursment-client';
+import { reimbursmentClient } from './reimbursement-client';
 
 export async function register(username: string, password: string, firstName: string, lastName: string, email: string) {
     let response = await reimbursmentClient.post('/users', {username, password, firstName, lastName, email});
