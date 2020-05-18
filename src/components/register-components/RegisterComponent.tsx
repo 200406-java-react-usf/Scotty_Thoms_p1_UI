@@ -6,12 +6,14 @@ import {
     FormControl, 
     Button} from "@material-ui/core";
 import React, { useState } from "react";
-import { register } from '../remote/user-service';
-import { User } from "../models/user";
+import { register } from '../../remote/user-service';
+import { User } from "../../models/user";
+import { Alert } from "@material-ui/lab";
 
 interface IRegisterProps {
     newUser: User;
-    setNewUser: (user: User) => void;
+    errorMessage: string;
+    registerAction: (username: string, password: string, firstName: string, lastName: string, email: string) => void;
 
 }
 
@@ -59,9 +61,7 @@ function RegisterComponent(props: IRegisterProps) {
     }
 
     let makeNewUser = async () => {
-        let newUser = await register(username, password, firstName, lastName, email);
-        console.log(newUser);
-        props.setNewUser(newUser);
+        props.registerAction(username, password, firstName, lastName, email);
     }
 
     return (
@@ -120,7 +120,13 @@ function RegisterComponent(props: IRegisterProps) {
                         size = "medium"> Register
                     </Button>
                     <br/><br/>
-                    
+                    {
+                        props.errorMessage 
+                            ? 
+                        <Alert severity="error">{props.errorMessage}</Alert>
+                            :
+                        <></>
+                    }
 
                 </form>
             </div>

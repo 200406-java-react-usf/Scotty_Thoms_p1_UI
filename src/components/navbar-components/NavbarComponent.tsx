@@ -1,5 +1,5 @@
 import React from 'react';
-import { User } from '../models/user';
+import { User } from '../../models/user';
 import { makeStyles, List, ListItem, Typography, ListItemText } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
@@ -27,10 +27,10 @@ const NavbarComponent = (props: INavbarProps) => {
                         props.authUser 
                         ?
                         <ListItemText inset>
-                        <Typography color="inherit" variant="h6">
-                            <Link to="/home" className={classes.link}>Home</Link>
-                        </Typography>
-                    </ListItemText>
+                            <Typography color="inherit" variant="h6">
+                                <Link to="/home" className={classes.link}>Home</Link>
+                            </Typography>
+                        </ListItemText>
                         :
                         <> </>
                     }

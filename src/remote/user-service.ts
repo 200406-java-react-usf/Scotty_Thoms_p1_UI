@@ -9,3 +9,8 @@ export async function getAllUsers() {
     let response = await reimbursmentClient.get('/users');
     return await response.data;
 }
+
+export async function logout() {
+    await reimbursmentClient.get('/auth');
+    return true;
+}

@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import './App.css';
-import NavbarComponent from './components/NavbarComponent';
+import NavbarComponent from './components/navbar-components/NavbarComponent';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { 
     AppBar,
     Toolbar, 
     Typography} from '@material-ui/core';
-import HomeComponent from './components/HomeComponent';
-import LoginComponent from './components/LoginComponent';
-import RegisterComponent from './components/RegisterComponent';
+import HomeComponent from './components/home-components/HomeComponent';
+import LoginComponent from './components/login-components/LoginContainer';
+import RegisterComponent from './components/register-components/RegisterContainer';
+import { User } from './models/user';
+import { Provider } from 'react-redux';
+import { store } from './Store';
 
 function App() {
 
@@ -19,22 +22,25 @@ function App() {
 
     return (
         <>
-            < Router >
-                < AppBar color="primary" position="static">
-                    < Toolbar >
+            < Provider store={store}>
+                < Router >
+                    < AppBar color="primary" position="static">
+                        < Toolbar >
                         < Typography variant="h5" color="inherit">
-                            < NavbarComponent authUser={authUser}/>
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
+                                < NavbarComponent authUser={new User(0, '', '', '', '','','')} /> 
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
 
-                < Switch >
-                    < Route path="/home" render={() => < HomeComponent username={authUser?.username} />} />
-                    < Route path="/login" render={() => < LoginComponent authUser={authUser} setAuthUser={setAuthUser}/> } />
-                    < Route path="/register" render={() => < RegisterComponent newUser={newUser} setNewUser={makeNewUser} /> } /> 
+                    < Switch >
                     
-                </Switch>
-            </Router>
+                        < Route path="/home" render={() => < HomeComponent username={'test3'} />} />
+                        < Route path="/login" render={() => < LoginComponent /> } />
+                        < Route path="/register" render={() => < RegisterComponent  /> } /> 
+                        
+                    </Switch>
+                </Router>
+            </Provider>
         </> 
     );
 }

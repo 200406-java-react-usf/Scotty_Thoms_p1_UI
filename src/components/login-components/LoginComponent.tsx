@@ -7,14 +7,14 @@ import {
     Button, 
     makeStyles} from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
-import { authenticate } from '../remote/auth-service';
-import { getAllUsers } from '../remote/user-service';
-import { User } from '../models/user'; 
+// import { authenticate } from '../../remote/auth-service';
+import { User } from '../../models/user'; 
 import { Redirect } from 'react-router-dom';
 
 interface ILoginProps {
     authUser: User;
-    setAuthUser: (user: User) => void;
+    errorMessage: string;
+    loginAction: (username: string, password: string) => void;
 }
 
 const useStyles = makeStyles({
@@ -37,7 +37,7 @@ function LoginComponent(props: ILoginProps) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     // eslint-disable-next-line
-    const [errorMessage, setErrorMessage] = useState('Please Enter Valid Credentials');
+    // const [errorMessage, setErrorMessage] = useState('Please Enter Valid Credentials');
 
     let updateUsername = (e: any) => {
         setUsername(e.currentTarget.value);
@@ -48,15 +48,11 @@ function LoginComponent(props: ILoginProps) {
     }
 
     let login = async () => {
-        let authUser = await authenticate(username, password);
-        props.setAuthUser(authUser);
+        props.loginAction(username, password);
         // console.log(authUser);
     }
 
-    let getUsers = async () => {
-        let allUsers = await getAllUsers();
-        console.log(allUsers);
-    }
+
 
     return (
         props.authUser ? 
@@ -88,12 +84,10 @@ function LoginComponent(props: ILoginProps) {
                         <br/><br/>
                         <Button onClick={login} variant="contained" color="primary" size="medium">Login</Button>
                         <br/><br/>
-                        <Button onClick={getUsers} variant="contained" color="primary" size="medium">Get ALl Users Test</Button>
-                        <br/><br/>
                         {
-                            errorMessage 
+                            props.errorMessage 
                                 ? 
-                            <Alert severity="error">{errorMessage}</Alert>
+                            <Alert severity="error">{props.errorMessage}</Alert>
                                 :
                             <></>
                         }
