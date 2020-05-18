@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     }
 });
 
-const NavbarComponent = (props: INavbarProps) => {
+function NavbarComponent (props: INavbarProps)  {
 
     const classes = useStyles();
 
@@ -22,7 +22,7 @@ const NavbarComponent = (props: INavbarProps) => {
         <>
             <List component="nav">
                 <ListItem component="div">
-                    <Typography color="inherit" variant="h5">Reimbursments</Typography>
+                    <Typography color="inherit" variant="h5">ERS</Typography>
                     {
                         props.authUser 
                         ?
@@ -46,7 +46,7 @@ const NavbarComponent = (props: INavbarProps) => {
                     </ListItemText>
                     <ListItemText inset>
                         <Typography color="inherit" variant="h6">
-                            <span className={classes.link}>{props.authUser?.username}</span>
+                            <span className={classes.link}>{props.authUser?.firstName}</span>
                         </Typography>
                     </ListItemText>
                 </ListItem>

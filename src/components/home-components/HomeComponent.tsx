@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { getAllUsers, logout } from '../../remote/user-service';
 import { Button } from '@material-ui/core';
+import { getAllUsers, logout } from '../../remote/user-service';
 
 interface IHomeProps {
     username: string;
@@ -16,7 +16,6 @@ function HomeComponent (props: IHomeProps) {
 
     let userLogout = async () => {
         await logout();
-        
     }
 
     return (

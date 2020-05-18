@@ -6,7 +6,6 @@ import {
     FormControl, 
     Button} from "@material-ui/core";
 import React, { useState } from "react";
-import { register } from '../../remote/user-service';
 import { User } from "../../models/user";
 import { Alert } from "@material-ui/lab";
 
