@@ -87,6 +87,7 @@ function LoginComponent(props: ILoginProps) {
                         </FormControl>
                         <br/><br/>
                         <Button onClick={login} variant="contained" color="primary" size="medium">Login</Button>
+                        <br/><br/>
                         <Button onClick={getUsers} variant="contained" color="primary" size="medium">Get ALl Users Test</Button>
                         <br/><br/>
                         {
