@@ -2,12 +2,11 @@ import { Dispatch } from "redux"
 import { authenticate } from '../remote/auth-service'
 
 export const loginActionTypes = {
-    SUCCESSFUL_LOGIN: 'REVABOARDS_SUCCESSFUL_LOGIN',
-    BAD_REQUEST: 'REVABOARDS_BAD_REQUEST',
-    INVALID_CREDENTIALS: 'REVABOARDS_INVALID_CREDENTIALS',
-    INTERNAL_SERVER_ERROR: 'REVABOARDS_INTERNAL_SERVER_ERROR'
-}
-
+    SUCCESSFUL_LOGIN: 'REIMB_SUCCESSFUL_LOGIN',
+    BAD_REQUEST: 'REIMB_BAD_REQUEST',
+    INVALID_CREDENTIALS: 'REIMB_INVALID_CREDENTIALS',
+    INTERNAL_SERVER_ERROR: 'REINB_INTERNAL_SERVER_ERROR'
+}  
 export const loginAction = (username: string, password: string) => async (dispatch: Dispatch) => {
 
     try {

@@ -16,7 +16,8 @@ function HomeComponent (props: IHomeProps) {
     }
 
     let userLogout = async () => {
-        await logout();
+        await logout(); 
+        
     }
 
     let getAllReimb = async () => {
@@ -34,9 +35,10 @@ function HomeComponent (props: IHomeProps) {
                 <br/><br/>
                 <Button onClick={getUsers} variant="contained" color="primary" size="medium">Get ALl Users Test</Button>
                 <br/><br/>
-                <Button onClick={userLogout} variant="contained" color="primary" size="medium">logout test</Button>
-                <br/><br/>
                 <Button onClick={getAllReimb} variant="contained" color="primary" size="medium">get all reimb test</Button>
+                <br/><br/>
+                <Button onClick={userLogout} variant="contained" color="secondary" size="medium">logout</Button>
+                
             </h1>
         </>
     )

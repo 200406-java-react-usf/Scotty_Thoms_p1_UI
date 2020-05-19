@@ -1,9 +1,10 @@
 import NavbarComponent from "./NavbarComponent"
 import { connect } from "react-redux";
+import { IState } from "../../reducers";
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
     return {
-        authUser: state.navbar.authUser
+        username: state.login.authUser?.username
     }
 }
 

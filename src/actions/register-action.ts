@@ -2,10 +2,10 @@ import { Dispatch } from "redux"
 import { register } from "../remote/user-service"
 
 export const registerActionTypes = {
-    SUCCESSFUL_REGISTER: 'REVABAORDS_SUCCESSFUL_REGISTER',
-    BAD_REQUEST: 'REVABOARDS_BAD_REQUEST',
-    CONFLICT_ERROR: 'REVABOARDS_CONFLICT_ERROR',
-    INTERNAL_SERVER_ERROR: 'REVABOARDS_INTERNAL_SERVER_ERROR'
+    SUCCESSFUL_REGISTER: 'REIMB_SUCCESSFUL_REGISTER',
+    BAD_REQUEST: 'REIMB_BAD_REQUEST',
+    CONFLICT_ERROR: 'REIMB_CONFLICT_ERROR',
+    INTERNAL_SERVER_ERROR: 'REIMB_INTERNAL_SERVER_ERROR'
 }
 
 export const registerAction = (username: string, password:string, firstName: string, lastName: string, email: string) => async (dispatch: Dispatch) => {

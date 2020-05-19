@@ -1,12 +1,12 @@
-// import { IState } from "../../reducers";
-
+import { IState } from "../../reducers";
 import { connect } from "react-redux"
 import HomeComponent from "./HomeComponent"
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
     return {
-        authUser: state.home.authUser
+        username: state.login.authUser?.username
     }
 }
 
 export default connect(mapStateToProps)(HomeComponent);
+
