@@ -12,7 +12,7 @@ export const logoutAction = () => async (dispatch: Dispatch) => {
         console.log(`logged out: ${loggedOut}`);
         dispatch({
             type: logoutActionTypes.SUCCESSFUL_LOGOUT,
-            payload: loggedOut
+            payload: null
         });
     } catch (e) {
         dispatch({

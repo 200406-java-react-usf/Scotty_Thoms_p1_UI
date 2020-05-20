@@ -21,8 +21,7 @@ export const logoutReducer = (state: ILogoutState = initialState, action: AnyAct
             console.log(`aciton payload: ${action.payload}`);
             return {
                 ...state, 
-                // @ts-ignore
-                authUser: (null as User)
+                authUser: action.payload
             }
         default:
             return state
