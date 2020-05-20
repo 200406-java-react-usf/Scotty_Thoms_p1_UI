@@ -8,13 +8,18 @@ import { User } from '../../models/user';
 interface IHomeProps {
     authUser: User;
     logoutAction: () => void;
+    users: User[];
 }
 
-function HomeComponent (props: IHomeProps) {
+function HomeComponent (props: IHomeProps) {    
 
     let getUsers = async () => {
         let allUsers = await getAllUsers();
+        for (let i=0; i<allUsers.length; i++){
+            props.users[i] = allUsers[i];
+        }
         console.log(allUsers);
+        console.log(props.users);
     }
 
     let userLogout = async () => {
@@ -30,7 +35,6 @@ function HomeComponent (props: IHomeProps) {
     let getReimbByUsername = async () => {
         let reimbFromUser = await getReimbursementByUsername(props.authUser.username);
         console.log(reimbFromUser);
-
     }
 
     let r = (newEmp: User) => {

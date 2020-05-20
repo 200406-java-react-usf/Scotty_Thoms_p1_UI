@@ -12,7 +12,8 @@ import {
     Typography} from '@material-ui/core';
 import { Provider } from 'react-redux';
 import { store } from './Store';
-import LogoutComponent from './components/logout-components/LogoutComponent';
+import LogoutComponent from './components/logout-components/LogoutComponent'; 
+import UserComponent from './components/user-component/UserContainer';
 
 
 function App() {
@@ -36,7 +37,8 @@ function App() {
                         < Route path="/register" render={() => < RegisterComponent  /> } /> 
                         < Route path="/reimbursements" render={() => <ReimbursementComponent />} /> 
                         < Route path="/logout" render={() => <LogoutComponent /> } />
-                        
+                        < Route path="/users" render={() => <UserComponent /> } />
+
                     </Switch>
                 </Router>
             </Provider>

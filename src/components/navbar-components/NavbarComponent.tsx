@@ -63,6 +63,26 @@ function NavbarComponent (props: INavbarProps)  {
                             <></>
                         }
 
+                        {
+                            (props.authUser.role === 'Admin') 
+                            ?
+                            <>
+                                <ListItemText inset>
+                                    <Typography color="inherit" variant="h6">
+                                        <Link to="/users" className={classes.link}>View All Users</Link>
+                                    </Typography>
+                                </ListItemText>
+
+                                <ListItemText inset>
+                                    <Typography color="inherit" variant="h6">
+                                        <Link to="/register" className={classes.link}>Register a New User</Link>
+                                    </Typography>
+                                </ListItemText>
+                            </>
+                            :
+                            <></>
+                        }
+
                             <ListItemText inset>
                                 <Typography color="inherit" variant="h6">
                                     <span className={classes.link}>{props.authUser.username}</span>
@@ -89,11 +109,6 @@ function NavbarComponent (props: INavbarProps)  {
                         <ListItemText inset>
                             <Typography color="inherit" variant="h6">
                                 <Link to="/login" className={classes.link}>Login</Link>
-                            </Typography>
-                        </ListItemText>
-                        <ListItemText inset>
-                            <Typography color="inherit" variant="h6">
-                                <Link to="/register" className={classes.link}>Register</Link>
                             </Typography>
                         </ListItemText>
                         </> 
