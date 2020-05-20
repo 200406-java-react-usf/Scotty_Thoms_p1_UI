@@ -8,12 +8,12 @@ import {
 import React, { useState } from "react";
 import { User } from "../../models/user";
 import { Alert } from "@material-ui/lab";
+import { Redirect } from "react-router-dom";
 
 interface IRegisterProps {
     newUser: User;
     errorMessage: string;
     registerAction: (username: string, password: string, firstName: string, lastName: string, email: string) => void;
-
 }
 
 const useStyles = makeStyles({
@@ -64,6 +64,9 @@ function RegisterComponent(props: IRegisterProps) {
     }
 
     return (
+        props.newUser ?
+        < Redirect to="/home" /> 
+        :
         <>
             <div className={classes.registerContainer}>
                 <form className={classes.registerForm}>

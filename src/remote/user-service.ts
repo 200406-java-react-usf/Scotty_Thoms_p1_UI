@@ -11,6 +11,7 @@ export async function getAllUsers() {
 }
 
 export async function logout() {
-    await reimbursmentClient.get('/auth');
-    return true;
+    let response = await reimbursmentClient.get('/auth');
+    console.log(`response data: ${response.data}`)
+    return await response.data;
 }

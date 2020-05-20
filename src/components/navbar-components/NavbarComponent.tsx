@@ -1,25 +1,38 @@
 import React from 'react';
-import { makeStyles, List, ListItem, Typography, ListItemText, Button } from '@material-ui/core';
+import { makeStyles, List, ListItem, Typography, ListItemText } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-import { logout } from '../../remote/user-service';
+import { User } from '../../models/user';
+// import { logout } from '../../remote/user-service';
 
 interface INavbarProps {
-    username: string;
+    authUser: User;
+    errorMessage: string;
+    logoutAction: () => void;
 }
 
 const useStyles = makeStyles({
     link: {
         textDecoration: "none",
         color: "white"
+    },
+    logout: {
+        background: 'white',
+        border: 2,
+        borderRadius: 5,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'black',
+        height: 48,
+        padding: '10px 30px',
+        marginLeft: 0
     }
 });
 
-function NavbarComponent (props: INavbarProps)  {
+function NavbarComponent (props: INavbarProps)  { 
 
     const classes = useStyles();
 
     let userLogout = async () => {
-        await logout(); 
+        props.logoutAction();
     }
 
     return(
@@ -28,13 +41,41 @@ function NavbarComponent (props: INavbarProps)  {
                 <ListItem component="div">
                     <Typography color="inherit" variant="h5">ERS</Typography>
                     {
-                        props.username
+                        props.authUser
                         ?
-                        <ListItemText inset>
-                            <Typography color="inherit" variant="h6">
-                                <Link to="/home" className={classes.link}>Home</Link>
-                            </Typography>
-                        </ListItemText>
+                        <>
+                            <ListItemText inset>
+                                <Typography color="inherit" variant="h6">
+                                    <Link to="/home" className={classes.link}>Home</Link>
+                                </Typography>
+                            </ListItemText>
+                        {
+                            (props.authUser.role === 'Employee') 
+                            ?
+                            <>
+                                <ListItemText inset>
+                                    <Typography color="inherit" variant="h6">
+                                        <Link to="/reimbursements" className={classes.link}>Submit Reimbursement</Link>
+                                    </Typography>
+                                </ListItemText>
+                            </>
+                            :
+                            <></>
+                        }
+
+                            <ListItemText inset>
+                                <Typography color="inherit" variant="h6">
+                                    <span className={classes.link}>{props.authUser.username}</span>
+                                </Typography>
+                             </ListItemText>
+
+                             
+                            <ListItemText inset>
+                                <Typography color="secondary" variant="h6">
+                                    <Link to="/logout" className={classes.logout} onClick={userLogout}>Logout</Link>
+                                </Typography>
+                            </ListItemText>
+                        </>
                         :
                         <>
                         </>
@@ -42,7 +83,7 @@ function NavbarComponent (props: INavbarProps)  {
                     
 
                     {
-                        !props.username
+                        !props.authUser
                         ?
                         <>
                         <ListItemText inset>
@@ -60,24 +101,7 @@ function NavbarComponent (props: INavbarProps)  {
                         <>
                         </>
                     }
-                    
-                    
-                    <ListItemText inset>
-                        <Typography color="inherit" variant="h6">
-                            <span className={classes.link}>{props.username}</span>
-                        </Typography>
-                    </ListItemText>
-                    {
-                        props.username
-                        ?
-                        <ListItemText inset>
-                            <Typography color="inherit" variant="h6">
-                                <Button  onClick={userLogout} variant="contained" color="primary" size="large">Logout</Button>
-                            </Typography>
-                        </ListItemText>
-                        :
-                        <> </>
-                    }
+
                 </ListItem>
             </List>
         </>
