@@ -33,6 +33,7 @@ function NavbarComponent (props: INavbarProps)  {
 
     let userLogout = async () => {
         props.logoutAction();
+        localStorage.clear();
     }
 
     return(
@@ -76,6 +77,19 @@ function NavbarComponent (props: INavbarProps)  {
                                 <ListItemText inset>
                                     <Typography color="inherit" variant="h6">
                                         <Link to="/register" className={classes.link}>Register a New User</Link>
+                                    </Typography>
+                                </ListItemText>
+                            </>
+                            :
+                            <></>
+                        }
+                        {
+                            (props.authUser.role === 'Manager')
+                            ?
+                            <>
+                                <ListItemText inset>
+                                    <Typography color="inherit" variant="h6">
+                                        <Link to="/reimbursements" className={classes.link}>View All Reimbursments</Link>
                                     </Typography>
                                 </ListItemText>
                             </>

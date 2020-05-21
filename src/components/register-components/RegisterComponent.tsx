@@ -11,7 +11,7 @@ import { Alert } from "@material-ui/lab";
 import { Redirect } from "react-router-dom";
 
 interface IRegisterProps {
-    newUser: User;
+    authUser: User;
     errorMessage: string;
     registerAction: (username: string, password: string, firstName: string, lastName: string, email: string) => void;
 }
@@ -63,8 +63,8 @@ function RegisterComponent(props: IRegisterProps) {
         props.registerAction(username, password, firstName, lastName, email);
     }
 
-    return (
-        props.newUser ?
+    return ( 
+        props.authUser ?
         < Redirect to="/home" /> 
         :
         <>
