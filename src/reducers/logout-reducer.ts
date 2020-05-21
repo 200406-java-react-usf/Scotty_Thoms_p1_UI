@@ -11,17 +11,17 @@ const initialState: ILogoutState = {
 
 export const logoutReducer = (state: ILogoutState = initialState, action: AnyAction) => {
     switch(action.type) {
-        case logoutActionTypes.INTERNAL_SERVER_ERROR:
-            return {
-                ...state,
-                errorMessage: action.payload
-            }
         case logoutActionTypes.SUCCESSFUL_LOGOUT:
             console.log('successful logout');
             console.log(`aciton payload: ${action.payload}`);
             return {
                 ...state, 
-                authUser: action.payload
+                authUser: 'action.payload'
+            }
+        case logoutActionTypes.INTERNAL_SERVER_ERROR:
+            return {
+                ...state,
+                errorMessage: action.payload
             }
         default:
             return state

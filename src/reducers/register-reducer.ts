@@ -5,7 +5,7 @@ import { User } from "../models/user"
 
 const initialState: IRegisterState = {
     // @ts-ignore
-    newUser: (null as User),
+    authUser: (null as User),
     errorMessage: ''
 }
 
@@ -15,7 +15,7 @@ export const registerReducer = (state: IRegisterState = initialState, action: An
         case registerActionTypes.SUCCESSFUL_REGISTER:
             return {
                 ...state,
-                newUser: action.payload
+                authUser: action.payload
             }
 
         case registerActionTypes.BAD_REQUEST:
