@@ -72,6 +72,7 @@ function ReimbursementComponent(props: IReimbursementProps) {
         props.reimbursementAction(+amount, description, props.authUser.id, typeId);
     }
 
+    
     return (
         <>
             <div className={classes.reimbContainer}>

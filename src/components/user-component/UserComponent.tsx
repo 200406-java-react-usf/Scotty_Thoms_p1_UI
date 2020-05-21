@@ -1,7 +1,6 @@
-import React, { useEffect, useState, SyntheticEvent } from 'react';
+import React, { useEffect, useState } from 'react';
 import { User } from '../../models/user';
 import { getAllUsers } from '../../remote/user-service';
-import { Link } from 'react-router-dom';
 
 interface IUserProps{
 
@@ -59,7 +58,7 @@ const UserComponent = (props: IUserProps) => {
 
         fetchData();
 
-    },[]);
+    },);
 
     return (
 
