@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 import { store } from './Store';
 import LogoutComponent from './components/logout-components/LogoutComponent'; 
 import UserComponent from './components/user-component/UserContainer';
+import MaterialTableDemo from './components/user-component/materialtablecopy';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
                         < Route path="/reimbursements" render={() => <ReimbursementComponent />} /> 
                         < Route path="/logout" render={() => <LogoutComponent /> } />
                         < Route path="/users" render={() => <UserComponent /> } />
+                        < Route path="/testing" render={() => <MaterialTableDemo /> } />
 
                     </Switch>
                 </Router>

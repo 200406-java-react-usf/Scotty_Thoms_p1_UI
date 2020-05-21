@@ -16,7 +16,7 @@ export const logoutReducer = (state: ILogoutState = initialState, action: AnyAct
             console.log(`aciton payload: ${action.payload}`);
             return {
                 ...state, 
-                authUser: 'action.payload'
+                authUser: action.payload
             }
         case logoutActionTypes.INTERNAL_SERVER_ERROR:
             return {

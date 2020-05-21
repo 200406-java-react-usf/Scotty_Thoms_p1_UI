@@ -1,5 +1,6 @@
 import { Dispatch } from "redux"
 import { logout } from "../remote/user-service";
+import { loginActionTypes } from "./login-action";
 
 export const logoutActionTypes = {
     SUCCESSFUL_LOGOUT: 'SUCCESSFUL_LOGOUT',
@@ -12,8 +13,13 @@ export const logoutAction = () => async (dispatch: Dispatch) => {
         console.log(`logged out: ${loggedOut}`);
         dispatch({
             type: logoutActionTypes.SUCCESSFUL_LOGOUT,
-            payload: null
+            payload: loggedOut
         });
+
+        dispatch({
+            type: loginActionTypes.SUCCESSFUL_LOGIN,
+            payload: loggedOut
+        })
     } catch (e) {
         dispatch({
             type: logoutActionTypes.INTERNAL_SERVER_ERROR,
