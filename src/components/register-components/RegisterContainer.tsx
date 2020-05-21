@@ -5,7 +5,7 @@ import RegisterComponent from "./RegisterComponent";
 
 const mapStateToProps = (state: IState) => {
     return {
-        newUser: state.register.newUser,
+        authUser: state.login.authUser,
         errorMessage: state.register.errorMessage
     }
 }
