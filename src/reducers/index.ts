@@ -11,17 +11,14 @@ export interface ILoginState {
 }
 
 export interface IRegisterState {
-    newUser: User;
     errorMessage: string;
 }
 
 export interface IReimbursementState {
-    authUser: User;
     errorMessage: string;
 }
 
 export interface ILogoutState {
-    authUser: User;
     errorMessage: string;
 }
 
