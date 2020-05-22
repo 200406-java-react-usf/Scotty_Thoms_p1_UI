@@ -89,7 +89,7 @@ function NavbarComponent (props: INavbarProps)  {
                             <>
                                 <ListItemText inset>
                                     <Typography color="inherit" variant="h6">
-                                        <Link to="/reimbursements" className={classes.link}>View All Reimbursments</Link>
+                                        <Link to="/manager" className={classes.link}>View All Reimbursments</Link>
                                     </Typography>
                                 </ListItemText>
                             </>

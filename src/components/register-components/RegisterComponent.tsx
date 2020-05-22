@@ -64,9 +64,6 @@ function RegisterComponent(props: IRegisterProps) {
     }
 
     return ( 
-        props.authUser ?
-        < Redirect to="/home" /> 
-        :
         <>
             <div className={classes.registerContainer}>
                 <form className={classes.registerForm}>

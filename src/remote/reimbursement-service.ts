@@ -1,4 +1,5 @@
 import { reimbursmentClient } from "./reimbursement-client";
+import { Reimbursement } from "../models/reimbursement";
 
 export async function getAllReimbursements() {
     let response = await reimbursmentClient.get('/reimbursements');
@@ -13,4 +14,8 @@ export async function sumbitReimbursement(amount: number, description: string, a
 export async function getReimbursementByUsername(username: string) {
     let response = await reimbursmentClient.get(`/reimbursements/${username}`);
     return await response.data;
+}
+
+export async function updateReimb(updatedReimb: Reimbursement) {
+    let response = await reimbursmentClient.put('reimbursements', {updatedReimb});
 }
