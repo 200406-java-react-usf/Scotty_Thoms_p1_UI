@@ -8,7 +8,6 @@ import {
 import React, { useState } from "react";
 import { User } from "../../models/user";
 import { Alert } from "@material-ui/lab";
-import { Redirect } from "react-router-dom";
 
 interface IRegisterProps {
     authUser: User;

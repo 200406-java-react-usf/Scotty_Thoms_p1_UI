@@ -59,6 +59,12 @@ function NavbarComponent (props: INavbarProps)  {
                                         <Link to="/reimbursements" className={classes.link}>Submit Reimbursement</Link>
                                     </Typography>
                                 </ListItemText>
+
+                                <ListItemText inset>
+                                    <Typography color="inherit" variant="h6">
+                                        <Link to="/userReimbs" className={classes.link}>View Your Reimbursements</Link>
+                                    </Typography>
+                                </ListItemText>
                             </>
                             :
                             <></>

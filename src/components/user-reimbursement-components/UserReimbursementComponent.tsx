@@ -4,9 +4,9 @@ import { Reimbursement } from '../../models/reimbursement';
 import { Alert } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core';
 import { User } from '../../models/user';
-import { getAllReimbursements, updateReimb } from '../../remote/reimbursement-service';
+import { updateReimb, getReimbursementByUsername, sumbitReimbursement } from '../../remote/reimbursement-service';
 
-export interface IManagerReimbursementProps {
+export interface IUserReimbursementProps {
     authUser: User;
     errorMessage: string;
 }
@@ -21,13 +21,13 @@ const useStyles = makeStyles({
     },
 });
 
-const ManagerReimbursementComponent = (props: IManagerReimbursementProps) => {
+const UserReimbursementComponent = (props: IUserReimbursementProps) => {
     const classes = useStyles();
     const [reimbs, setTableData] = useState([new Reimbursement(0,0,new Date,new Date,'',0,0,0,0)]);
     const [errorMessage, setErrorMessage] = useState('');
 
     let getTableData = async () => {
-        let result = await getAllReimbursements();
+        let result = await getReimbursementByUsername(props.authUser.username);
         setTableData(result);
     }
 
@@ -37,6 +37,15 @@ const ManagerReimbursementComponent = (props: IManagerReimbursementProps) => {
             getTableData();
         } catch (e) {
             setErrorMessage(e.response.data.reason);
+        }
+    }
+
+    const addNew = async (newReimb: Reimbursement) =>{
+        try{
+            await sumbitReimbursement(newReimb.amount, newReimb.description, newReimb.author_id, newReimb.reimb_type_id);
+            getTableData();
+        }catch(e){
+            setErrorMessage(e.response.data.reason)
         }
     }
 
@@ -50,19 +59,24 @@ const ManagerReimbursementComponent = (props: IManagerReimbursementProps) => {
             < MaterialTable
             columns = {[
                 { title: 'Reimb ID', field: 'reimb_id', editable: 'never'},
-                { title: 'Amount', field: 'amount', editable: 'never'},
-                { title: 'Time Submitted', field: 'submitted', editable: 'never'},
-                { title: 'Time Resolved', field: 'resolved', editable: 'never'},
-                { title: 'Description', field: 'description', editable: 'never'},
-                { title: 'Author', field: 'author_id', editable: 'never'},
-                { title: 'Resolver', field: 'resolver_id', editable: 'never'},
+                { title: 'Amount', field: 'amount', editable: 'onUpdate'},
+                { title: 'Time Submitted', field: 'submitted'},
+                { title: 'Time Resolved', field: 'resolved'},
+                { title: 'Description', field: 'description', editable: 'onUpdate'},
+                { title: 'Author', field: 'author_id'},
+                { title: 'Resolver', field: 'resolver_id'},
                 { title: 'Status', field: 'reimb_status_id'},
-                { title: 'Type', field: 'reimb_type_id', editable: 'never'},
+                { title: 'Type', field: 'reimb_type_id', editable: 'onUpdate'},
             ]}
             data = {reimbs}
-            title = "All Reimbursements"
+            title = 'Your Reimbursements'
             editable = {{
-                onRowUpdate: (newData, oldData) =>
+                onRowAdd: newData => 
+                new Promise((resolve, reject) => {
+                    addNew(newData);
+                    resolve();
+                }),
+                onRowUpdate: (newData, oldData) => 
                 new Promise((resolve, reject) => {
                     resolve();
                     updateRow(newData);
@@ -81,4 +95,4 @@ const ManagerReimbursementComponent = (props: IManagerReimbursementProps) => {
     );
 }
 
-export default ManagerReimbursementComponent;
+export default UserReimbursementComponent;
