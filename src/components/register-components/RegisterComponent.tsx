@@ -113,6 +113,7 @@ function RegisterComponent(props: IRegisterProps) {
                     </ FormControl>
                     <br/> <br/>
                     < Button 
+                        href="/home"
                         onClick={makeNewUser} 
                         variant="contained" color="primary"
                         size = "medium"> Register
