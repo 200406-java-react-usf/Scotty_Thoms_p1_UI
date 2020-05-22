@@ -1,10 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
-import { getAllUsers } from '../../remote/user-service';
-import { getAllReimbursements, getReimbursementByUsername } from '../../remote/reimbursement-service';
+import { Table, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
 import { User } from '../../models/user';
-
+ 
 interface IHomeProps {
     authUser: User;
     logoutAction: () => void;
@@ -12,30 +10,6 @@ interface IHomeProps {
 }
 
 function HomeComponent (props: IHomeProps) {    
-
-    let getUsers = async () => {
-        let allUsers = await getAllUsers();
-        for (let i=0; i<allUsers.length; i++){
-            props.users[i] = allUsers[i];
-        }
-        console.log(allUsers);
-        console.log(props.users);
-    }
-
-    let userLogout = async () => {
-        props.logoutAction(); 
-        
-    }
-
-    let getAllReimb = async () => {
-        let allReimb = await getAllReimbursements();
-        console.log(allReimb);
-    }
-
-    let getReimbByUsername = async () => {
-        let reimbFromUser = await getReimbursementByUsername(props.authUser.username);
-        console.log(reimbFromUser);
-    }
 
     let r = (newEmp: User) => {
         if (!newEmp) {

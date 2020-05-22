@@ -8,6 +8,7 @@ import ReimbursementComponent from './components/reimbursement-components/Reimbu
 import LogoutComponent from './components/logout-components/LogoutComponent'; 
 import UserComponent from './components/user-component/UserContainer';
 import ManagerReimbursementComponent from './components/manager-reimbursement-components/ManagerReimbursementContainer'
+import UserReimbursementComponent from './components/user-reimbursement-components/UserReimbursementContainer'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'; 
 import { 
     AppBar,
@@ -42,7 +43,7 @@ function App() {
                         < Route path="/logout" render={() => <LogoutComponent /> } />
                         < Route path="/users" render={() => <UserComponent /> } /> 
                         < Route path="/manager" render={() => <ManagerReimbursementComponent /> } />
-                    
+                        < Route path="/userReimbs" render={() => <UserReimbursementComponent /> } />
                     </Switch>
                 </Router>
             </Provider>

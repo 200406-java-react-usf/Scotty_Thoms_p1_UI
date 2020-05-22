@@ -18,4 +18,5 @@ export async function getReimbursementByUsername(username: string) {
 
 export async function updateReimb(updatedReimb: Reimbursement) {
     let response = await reimbursmentClient.put('reimbursements', {updatedReimb});
+    return await response.data;
 }
