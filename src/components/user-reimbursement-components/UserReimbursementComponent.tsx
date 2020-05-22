@@ -60,12 +60,12 @@ const UserReimbursementComponent = (props: IUserReimbursementProps) => {
             columns = {[
                 { title: 'Reimb ID', field: 'reimb_id', editable: 'never'},
                 { title: 'Amount', field: 'amount', editable: 'onUpdate'},
-                { title: 'Time Submitted', field: 'submitted'},
-                { title: 'Time Resolved', field: 'resolved'},
+                { title: 'Time Submitted', field: 'submitted', editable: 'never'},
+                { title: 'Time Resolved', field: 'resolved', editable: 'never'},
                 { title: 'Description', field: 'description', editable: 'onUpdate'},
-                { title: 'Author', field: 'author_id'},
-                { title: 'Resolver', field: 'resolver_id'},
-                { title: 'Status', field: 'reimb_status_id'},
+                { title: 'Author', field: 'author_id', editable: 'never'},
+                { title: 'Resolver', field: 'resolver_id', editable: 'never'},
+                { title: 'Status', field: 'reimb_status_id', editable: 'never'},
                 { title: 'Type', field: 'reimb_type_id', editable: 'onUpdate'},
             ]}
             data = {reimbs}
