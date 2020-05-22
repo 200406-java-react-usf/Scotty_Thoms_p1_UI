@@ -81,42 +81,6 @@ function HomeComponent (props: IHomeProps) {
                             {r(props.authUser)}
                         </TableBody>
                 </Table>
-
-                {
-                    (props.authUser.role === 'Admin') ?
-                    <>
-                        <Button onClick={getUsers} variant="contained" color="primary" size="medium">Get ALl Users Test</Button>
-                        <br/><br/>
-
-
-                    </>
-                    :
-                    <></>
-                }
-
-                {
-                    (props.authUser.role === 'Employee') 
-                    ?
-                    <>
-                        <Button onClick={getReimbByUsername} variant="contained" color="primary" size="medium">get just user reimb</Button>
-                        <br/><br/>
-                    </>
-                    :
-                    <></>
-                }
-                
-                {
-                    (props.authUser.role === 'Manager')
-                    ?
-                    <>
-                        <Button onClick={getAllReimb} variant="contained" color="primary" size="medium">get all reimb test</Button>
-                        <br/><br/>
-                    </>
-                    :
-                    <></>
-                }
-                
-                <Button onClick={userLogout} variant="contained" color="secondary" size="medium">Logout</Button>
                 
             </h1>
         </>

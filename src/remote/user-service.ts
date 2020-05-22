@@ -22,7 +22,11 @@ export async function update(u: User) {
     return await response.data;
 }
 
-// export async function deleteUserById(id: number) {
-//     let response = await reimbursmentClient.delete('/users', {id});
-//     return await response.data;
-// }
+export async function deleteUserById(userToBeDeleted: User) {
+    let response = await reimbursmentClient.delete('/users',{
+        data: {
+            id: userToBeDeleted.id
+        }
+    });
+    return await response.data;
+}
