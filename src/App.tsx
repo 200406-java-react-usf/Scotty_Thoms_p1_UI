@@ -33,7 +33,6 @@ function App() {
 
                     < Switch >
 
-                        < h1> Welcome to the Expense Reimbursement System!</h1>
                     
                         < Route path="/home" render={() => < HomeComponent  />} />
                         < Route path="/login" render={() => < LoginComponent /> } />
