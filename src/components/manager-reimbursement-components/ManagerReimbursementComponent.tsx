@@ -4,7 +4,7 @@ import { Reimbursement } from '../../models/reimbursement';
 import { Alert } from '@material-ui/lab';
 import { makeStyles } from '@material-ui/core';
 import { User } from '../../models/user';
-import { getAllReimbursements, updateReimb } from '../../remote/reimbursement-service';
+import { getAllReimbursements, resolveReimb } from '../../remote/reimbursement-service';
 
 export interface IManagerReimbursementProps {
     authUser: User;
@@ -32,12 +32,23 @@ const ManagerReimbursementComponent = (props: IManagerReimbursementProps) => {
     }
 
     const updateRow = async (updatedReimb: Reimbursement) => {
+        updatedReimb.resolver_id = props.authUser.id;
+        // @ts-ignore
+        if (updatedReimb.reimb_status_id as string === 'Approved') {
+            updatedReimb.reimb_status_id = 2;
+        } else {
+            updatedReimb.reimb_status_id = 3;
+        }
+        console.log(updatedReimb);
+ 
         try {
-            await updateReimb(updatedReimb);
+            await resolveReimb(updatedReimb.reimb_id, updatedReimb.resolver_id, updatedReimb.reimb_status_id);
             getTableData();
         } catch (e) {
             setErrorMessage(e.response.data.reason);
         }
+
+        getTableData();
     }
 
     useEffect(() => {
@@ -56,7 +67,7 @@ const ManagerReimbursementComponent = (props: IManagerReimbursementProps) => {
                 { title: 'Description', field: 'description', editable: 'never'},
                 { title: 'Author', field: 'author_id', editable: 'never'},
                 { title: 'Resolver', field: 'resolver_id', editable: 'never'},
-                { title: 'Status', field: 'reimb_status_id'},
+                { title: 'Status', field: 'reimb_status_id', editable: 'onUpdate'},
                 { title: 'Type', field: 'reimb_type_id', editable: 'never'},
             ]}
             data = {reimbs}

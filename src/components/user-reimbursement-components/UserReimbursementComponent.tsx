@@ -32,8 +32,25 @@ const UserReimbursementComponent = (props: IUserReimbursementProps) => {
     }
 
     const updateRow = async (updatedReimb: Reimbursement) => {
+        
+        console.log(updatedReimb);
+        // @ts-ignore
+        if (updatedReimb.reimb_type_id as string === 'Lodging') {
+            updatedReimb.reimb_type_id = 1;
+        } 
+        // @ts-ignore
+        else if (updatedReimb.reimb_type_id as string === 'Travel') {
+            updatedReimb.reimb_type_id = 2;
+        }
+        // @ts-ignore
+        else if (updatedReimb.reimb_type_id as string === 'Food') {
+            updatedReimb.reimb_type_id = 3;
+        }
+        else {
+            updatedReimb.reimb_type_id = 4;
+        }
         try {
-            await updateReimb(updatedReimb);
+            await updateReimb(updatedReimb.reimb_id, updatedReimb.amount, updatedReimb.description, updatedReimb.reimb_type_id);
             getTableData();
         } catch (e) {
             setErrorMessage(e.response.data.reason);
@@ -60,12 +77,12 @@ const UserReimbursementComponent = (props: IUserReimbursementProps) => {
             columns = {[
                 { title: 'Reimb ID', field: 'reimb_id', editable: 'never'},
                 { title: 'Amount', field: 'amount', editable: 'onUpdate'},
-                { title: 'Time Submitted', field: 'submitted'},
-                { title: 'Time Resolved', field: 'resolved'},
+                { title: 'Time Submitted', field: 'submitted', editable: 'never'},
+                { title: 'Time Resolved', field: 'resolved', editable: 'never'},
                 { title: 'Description', field: 'description', editable: 'onUpdate'},
-                { title: 'Author', field: 'author_id'},
-                { title: 'Resolver', field: 'resolver_id'},
-                { title: 'Status', field: 'reimb_status_id'},
+                { title: 'Author', field: 'author_id', editable: 'never'},
+                { title: 'Resolver', field: 'resolver_id', editable: 'never'},
+                { title: 'Status', field: 'reimb_status_id', editable: 'never'},
                 { title: 'Type', field: 'reimb_type_id', editable: 'onUpdate'},
             ]}
             data = {reimbs}
